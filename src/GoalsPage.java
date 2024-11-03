@@ -73,15 +73,13 @@ public class GoalsPage extends JFrame {
         goalsInputPanel.setBackground(SECONDARY_COLOR);
 
         // Short-term goals
-        JPanel shortTermPanel = createGoalPanel("Short-Term Goals", "What do you want to achieve in the next 30 days?");
-        shortTermGoalsArea = (JTextArea) shortTermPanel.getComponent(1);
+        shortTermGoalsArea = createGoalPanel("Short-Term Goals", "What do you want to achieve in the next 30 days?");
 
         // Long-term goals
-        JPanel longTermPanel = createGoalPanel("Long-Term Goals", "What do you want to achieve in the next 6 months?");
-        longTermGoalsArea = (JTextArea) longTermPanel.getComponent(1);
+        longTermGoalsArea = createGoalPanel("Long-Term Goals", "What do you want to achieve in the next 6 months?");
 
-        goalsInputPanel.add(shortTermPanel);
-        goalsInputPanel.add(longTermPanel);
+        goalsInputPanel.add(shortTermGoalsArea); // Add the JTextArea directly
+        goalsInputPanel.add(longTermGoalsArea);   // Add the JTextArea directly
 
         // Goals list section
         goalsListPanel = new JPanel();
@@ -112,7 +110,7 @@ public class GoalsPage extends JFrame {
         return contentPanel;
     }
 
-    private JPanel createGoalPanel(String title, String placeholder) {
+    private JTextArea createGoalPanel(String title, String placeholder) {
         JPanel panel = new JPanel(new BorderLayout(0, 10));
         panel.setBackground(SECONDARY_COLOR);
         panel.setBorder(BorderFactory.createTitledBorder(
@@ -131,6 +129,7 @@ public class GoalsPage extends JFrame {
         textArea.setText(placeholder);
         textArea.setForeground(Color.GRAY);
 
+        // Add focus listeners to handle placeholder text
         textArea.addFocusListener(new FocusAdapter() {
             @Override
             public void focusGained(FocusEvent e) {
@@ -153,7 +152,7 @@ public class GoalsPage extends JFrame {
         scrollPane.setBorder(BorderFactory.createLineBorder(PRIMARY_COLOR));
 
         panel.add(scrollPane, BorderLayout.CENTER);
-        return panel;
+        return textArea; // Return the JTextArea instead of the JPanel
     }
 
     private JPanel createFooterPanel() {
