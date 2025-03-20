@@ -69,6 +69,7 @@ public class MainPage extends JFrame {
         JButton foodChoicesButton = createStyledButton("Food Choices", "Track your meals and nutrition");
         JButton goalsButton = createStyledButton("Goals", "Set and monitor your fitness goals");
         JButton graphsButton = createStyledButton("Graphs", "View your progress charts");
+        JButton exercisesButton = createStyledButton("Exercises", "Discover workout suggestions");
         JButton settingsButton = createStyledButton("Settings", "Adjust your preferences");
         JButton profileButton = createStyledButton("Profile", "View and edit your profile");
 
@@ -77,11 +78,12 @@ public class MainPage extends JFrame {
         gbc.gridx = 0; gbc.gridy = 0; centerPanel.add(foodChoicesButton, gbc);
         gbc.gridx = 1; gbc.gridy = 0; centerPanel.add(goalsButton, gbc);
         gbc.gridx = 0; gbc.gridy = 1; centerPanel.add(graphsButton, gbc);
-        gbc.gridx = 1; gbc.gridy = 1; centerPanel.add(settingsButton, gbc);
-        gbc.gridx = 0; gbc.gridy = 2; gbc.gridwidth = 2; centerPanel.add(profileButton, gbc);
+        gbc.gridx = 1; gbc.gridy = 1; centerPanel.add(exercisesButton, gbc); 
+        gbc.gridx = 0; gbc.gridy = 2; centerPanel.add(settingsButton, gbc);
+        gbc.gridx = 1; gbc.gridy = 2; centerPanel.add(profileButton, gbc);
 
         // Add button listeners
-        addButtonListeners(foodChoicesButton, goalsButton, graphsButton, settingsButton, profileButton);
+        addButtonListeners(foodChoicesButton, goalsButton, graphsButton, exercisesButton, settingsButton, profileButton);
 
         return centerPanel;
     }
@@ -135,6 +137,9 @@ public class MainPage extends JFrame {
                             break;
                         case "Graphs":
                             new GraphsPage();
+                            break;
+                        case "Exercises":
+                            new ExercisesPage();
                             break;
                         case "Settings":
                             JOptionPane.showMessageDialog(MainPage.this,
